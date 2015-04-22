@@ -3,10 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <title>Shortly</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
+
   </head>
   <body>
-    <h1>Shortly</h1>
+    <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">SHORTLY</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#links"><i class="fa fa-home"></i> Links</a></li>
+        <li><a href="#shorten"><i class="fa fa-home"></i> Shorten</a></li>
+        <li><a href="#signup"><i class="fa fa-shield"></i> Sign Up</a></li>
+        <li><a href="#signin"><i class="fa fa-comment"></i> Sign In</a></li>
+      </ul>
+    </div>
+    </nav>
 
     <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
     <div ng-view></div>
