@@ -1,5 +1,6 @@
 <div id='container' ng-controller="LinksController">
-  <ul ng-repeat="link in data.links">
-    <li><a href="{{ link.url }}"><p>{{ link.title }}</p></a></li>
+<label>Search: <input class="search" ng-model="searchText"></label>
+  <ul ng-repeat="link in data.links | filter:searchText | orderBy: '-visits'" class="repeat-animation">
+    <ng-shortlink ng-model="link"></ng-shortlink>
   </ul>
 </div>

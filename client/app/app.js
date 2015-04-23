@@ -3,7 +3,8 @@ angular.module('shortly', [
   'shortly.links',
   'shortly.shorten',
   'shortly.auth',
-  'ngRoute'
+  'ngRoute',
+  'ngAnimate'
 ])
 .config(function($routeProvider, $httpProvider, $locationProvider) {
   $routeProvider
@@ -36,6 +37,73 @@ angular.module('shortly', [
     // of interceptors. Think of it like middleware for your ajax calls
     $httpProvider.interceptors.push('AttachTokens');
     //$locationProvider.html5mode(true);
+})
+.directive('ngShortlink', function() {
+  return {
+    restrict: 'EA',
+    require: '^ngModel',
+    template: '<div class="link panel panel-default"> \
+    <li><a href="/api/links/{{ link.code }}"> \
+    <p>{{ link.title }}</p></a><p>{{ link.url }}</p> \
+    <p>{{ link.visits }} visits</li> \
+    </div>'
+  }
+})
+// .animation('.view-slide-in', function () {
+//   return {
+//     enter: function(element, done) {
+//       element.css({
+//         opacity: 0.5,
+//         position: "relative",
+//         top: "10px",
+//         left: "20px"
+//       })
+//       .animate({
+//         top: 0,
+//         left: 0,
+//         opacity: 1
+//         }, 1000, done);
+//     }
+//   };
+// })
+.animation('.repeat-animation', function () {
+  return {
+    enter : function(element, done) {
+      console.log("entering...");
+      var width = element.width();
+      element.css({
+        position: 'relative',
+        left: -10,
+        opacity: 0
+      });
+      element.animate({
+        left: 0,
+        opacity: 1
+      }, done);
+    },
+    leave : function(element, done) {
+      element.css({
+        position: 'relative',
+        left: 0,
+        opacity: 1
+      });
+      element.animate({
+        left: -10,
+        opacity: 0
+      }, done);
+    },
+    move : function(element, done) {
+      element.css({
+        left: "2px",
+        up: "2px",
+        opacity: 0.5
+      });
+      element.animate({
+        left: "0px",
+        opacity: 1
+      }, done);
+    }
+  };
 })
 .factory('AttachTokens', function ($window) {
   // this is an $httpInterceptor

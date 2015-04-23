@@ -9,5 +9,8 @@ angular.module('shortly.links', [])
         console.log($scope.data);
       });
   };
+  $scope.incVisits= function(i) {
+    $http.get('/'+$scope.data.links[i].code,{navLink: $scope.data.links[i]});
+  }
   $scope.getLinks();
 });
