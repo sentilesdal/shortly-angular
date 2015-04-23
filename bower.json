@@ -13,6 +13,10 @@
     "angular": "~1.2.18",
     "angular-route": "~1.2.18",
     "angular-mocks": "~1.2.18",
-    "angular-animate": "~1.2.18"
+    "angular-animate": "~1.2.18",
+    "angular-ui-router": "~0.2.13",
+    "polymer": "Polymer/polymer#^0.5",
+    "paper-elements": "Polymer/paper-elements#~0.5.5",
+    "core-elements": "Polymer/core-elements#~0.5.5"
   }
 }

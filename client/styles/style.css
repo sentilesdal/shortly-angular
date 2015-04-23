@@ -148,3 +148,21 @@ input[type=url]:focus {
 label {
   margin-left: 40px;
 }
+.pink paper-tab::shadow #ink {
+  color: tomato;
+}
+
+a {
+  position: relative;
+  color: tomato;
+  font-size: 20px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.title {
+  font-size: 35px;
+  background-color: black;
+}

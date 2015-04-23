@@ -4,51 +4,59 @@ angular.module('shortly', [
   'shortly.shorten',
   'shortly.auth',
   'ngRoute',
+  'ui.router',
   'ngAnimate'
 ])
-.config(function($routeProvider, $httpProvider, $locationProvider) {
-  $routeProvider
-    // .when('/', {
-    //   templateUrl: '/index.html',
-    //   controller: 'AuthController'
-    // })
-    .when('/signin', {
+.config(function($routeProvider, $httpProvider, $locationProvider, $stateProvider) {
+
+  $routeProvider.otherwise({
+      redirectTo: 'app/links/links.html'
+    });
+
+  $stateProvider
+    .state('signin', {
+      url: '/signin',
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
     })
-    .when('/signup', {
+    .state('signup', {
+      url: '/signup',
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
-    .when('/links', {
+    .state('links', {
+      url: '/links',
+      // views: {
+      //   'searchView': {template: 'search.html'},
+      //   'linksView': {template: 'linkslist.html'}
+      // },
       templateUrl: 'app/links/links.html',
-      controller: 'LinksController'
+      controller: 'LinksController',
+      authenticate: true
     })
-    .when('/shorten', {
+    .state('shorten', {
+      url: '/shorten',
       templateUrl: 'app/shorten/shorten.html',
-      controller: 'ShortenController'
-    })
-    .otherwise({
-      redirectTo: 'app/links/links.html'
+      controller: 'ShortenController',
+      authenticate: true
     });
-    // Your code here
 
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
     $httpProvider.interceptors.push('AttachTokens');
     //$locationProvider.html5mode(true);
 })
-.directive('ngShortlink', function() {
-  return {
-    restrict: 'EA',
-    require: '^ngModel',
-    template: '<div class="link panel panel-default"> \
-    <li><a href="/api/links/{{ link.code }}"> \
-    <p>{{ link.title }}</p></a><p>{{ link.url }}</p> \
-    <p>{{ link.visits }} visits</li> \
-    </div>'
-  }
-})
+// .directive('ngShortlink', function() {
+//   return {
+//     restrict: 'EA',
+//     require: '^ngModel',
+//     template: '<div class="link panel panel-default"> \
+//     <li><a href="/api/links/{{ link.code }}"> \
+//     <p>{{ link.title }}</p></a><p>{{ link.url }}</p> \
+//     <p>{{ link.visits }} visits</li> \
+//     </div>'
+//   }
+// })
 // .animation('.view-slide-in', function () {
 //   return {
 //     enter: function(element, done) {
